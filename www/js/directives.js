@@ -1,9 +1,9 @@
 angular.module('cleansingMusic')
 
-.directive('fitText', function() {
+    .directive('fitText', function () {
         return {
             restrict: 'A',
-            link: function(scope, element, attrs) {
+            link: function (scope, element, attrs) {
                 $(element).fitText();
             }
         };
