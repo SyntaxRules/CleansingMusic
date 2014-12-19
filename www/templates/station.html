@@ -1,32 +1,11 @@
 <ion-view view-title="Station">
-    <ion-content>
+    <ion-content class="center">
+        <div class="col">
+            <h1 ng-bind="station.title"></h1>
 
-        <h1 data-ng-bind="playlist.title"></h1>
-
-        <p>Listen to this kind of music!</p>
-        <!--<p><button class="button" ng-click="play('http://74.124.12.136:8014/')">Play last</button></p>-->
-
-
-        <div id="player" class="row">
-
-            <!--dislike-->
-            <div class="col col-25 dislike-btn">
-                <a class="button button-icon icon ion-heart-broken"></a>
-            </div>
-
-            <!--play stop-->
-            <div class="col col-50 play-btn">
-                <a class="button button-icon icon ion-play" ng-hide="isPlaying()"
-                   ng-click="play()"></a>
-                <a class="button button-icon icon ion-stop" ng-show="isPlaying()"
-                   ng-click="stop()"></a>
-            </div>
-
-            <!--like-->
-            <div class="col col-25 like-btn">
-                <a class="button button-icon icon ion-heart"></a>
-            </div>
-
+            <button class="button button-block button-positive" ng-click="play()">
+                Play this Station
+            </button>
         </div>
     </ion-content>
     <footer-bar></footer-bar>

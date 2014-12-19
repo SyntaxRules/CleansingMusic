@@ -34,3 +34,7 @@
     align-items: center;
     text-align: center;
 }
+
+.allow-for-subfooter {
+    margin-bottom: 44px;
+}

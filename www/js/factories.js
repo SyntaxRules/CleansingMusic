@@ -2,7 +2,7 @@ angular.module('cleansingMusic')
 
     .factory('MusicService', function ($cordovaMedia, $cordovaLocalNotification, $ionicLoading) {
         var musicIsPlaying = false;
-        var playingStation = '';
+        var playingStation = {};
         var media;
         var service = {
             isPlaying: isPlaying,
@@ -14,7 +14,7 @@ angular.module('cleansingMusic')
         return service;
 
         function play(station) {
-            if (station.id == playingStation.id) return; //no need to play something that is already playing
+            //if (station.id == playingStation.id) return; //no need to play something that is already playing
             if (musicIsPlaying) {
                 stop();
             }
@@ -44,10 +44,12 @@ angular.module('cleansingMusic')
 
         function mediaStatusCallback (status) {
             if (status == 0) {
+                $ionicLoading.hide();
                 $cordovaDialogs.alert('Failed to start the music. Please try again.');
             } else if (status == 1) {
                 $ionicLoading.show({template: 'Loading...'});
             } else if (status == 3 || status == 4) {
+                $ionicLoading.hide();
                 $cordovaLocalNotification.cancelAll();
             } else {
                 $ionicLoading.hide();
@@ -61,8 +63,9 @@ angular.module('cleansingMusic')
 
         //Getters
         function isPlaying(station) {
+            //console.log('Is playing fact ', playingStation, station);
             if (station) {
-                return playingStation.id == station.id;
+                return playingStation.id === station.id;
             }
             return musicIsPlaying;
         }

@@ -34,15 +34,18 @@ angular.module('cleansingMusic')
     })
 
     .controller('StationsCtrl', function ($scope, StationService) {
-        $scope.playlists = StationService.get();
+        $scope.stations = StationService.get();
     })
 
     .controller('StationCtrl', function ($scope, $stateParams, MusicService, StationService) {
-        $scope.playing = false;
-        $scope.playlist = StationService.get($stateParams.stationId);
+        var init = function() {
+            $scope.stationId = $stateParams.stationId;
+            $scope.station = StationService.get($stateParams.stationId);
+            console.log($scope.station);
+        };
 
         $scope.play = function () {
-            MusicService.play($scope.playlist);
+            MusicService.play($scope.station);
         };
 
         $scope.stop = function () {
@@ -50,7 +53,9 @@ angular.module('cleansingMusic')
         };
 
         $scope.isPlaying = function () {
-            return MusicService.isPlaying($scope.playlist);
+            console.log('Is playing',  $scope.station);
+            return MusicService.isPlaying($scope.station);
         };
 
+        init();
     });

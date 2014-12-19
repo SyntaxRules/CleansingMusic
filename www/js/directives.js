@@ -13,7 +13,6 @@ angular.module('cleansingMusic')
             templateUrl: 'templates/footerBar.html',
             link: function (scope, ele, attrs) {
                 var init = function() {
-                    scope.station = MusicService.getPlayingStation();
                 };
 
                 scope.getStationTitle = function() {
@@ -31,4 +30,4 @@ angular.module('cleansingMusic')
                 init();
             }
         }
-    })
+    });
