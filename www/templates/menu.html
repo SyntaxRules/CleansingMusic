@@ -14,14 +14,11 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item nav-clear menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/search">
+        <ion-item nav-clear menu-close href="#/app/home">
           Home
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/playlists">
@@ -29,6 +26,9 @@
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/about">
           About
+        </ion-item>
+        <ion-item nav-clear menu-close ng-click="login()">
+          Login
         </ion-item>
       </ion-list>
     </ion-content>
