@@ -37,7 +37,7 @@ angular.module('cleansingMusic')
   $scope.playlists = StationService.get();
 })
 
-.controller('StationCtrl', function($scope, $stateParams, MusicService, $ionicLoading, StationService) {
+.controller('StationCtrl', function($scope, $stateParams, MusicService, $ionicLoading, StationService, $cordovaDialogs) {
       $scope.playing = false;
       $scope.playlist = StationService.get($stateParams.stationId);
       console.log($stateParams);
@@ -60,6 +60,7 @@ angular.module('cleansingMusic')
           $ionicLoading.show({template: 'Loading...'});
         } else {
           $ionicLoading.hide();
+            $cordovaDialogs.alert('Failed to start the music. Please try again.');
         }
       };
 

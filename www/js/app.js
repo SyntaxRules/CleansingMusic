@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('cleansingMusic', ['ionic', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, MusicService, $cordovaDialogs) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,6 +18,20 @@ angular.module('cleansingMusic', ['ionic', 'ngCordova'])
       StatusBar.styleDefault();
     }
   });
+      $ionicPlatform.on('pause', function() {
+        if (!MusicService.isPlaying()) {
+          MusicService.stop();
+        }
+      });
+      $ionicPlatform.on('resume', function() {
+        if (!MusicService.isPlaying()) {
+          MusicService.stop();
+        }
+      });
+      $ionicPlatform.on('offline', function() {
+        MusicService.stop();
+        $cordovaDialogs.alert('Your internet connection has been lost.');
+      });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
