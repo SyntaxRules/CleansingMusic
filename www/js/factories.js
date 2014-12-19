@@ -14,7 +14,8 @@ angular.module('cleansingMusic')
         return service;
 
         function play(station) {
-            if (station.id != playingStation.id) {
+            if (station.id == playingStation.id) return; //no need to play something that is already playing
+            if (musicIsPlaying) {
                 stop();
             }
 
