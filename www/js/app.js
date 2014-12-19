@@ -47,22 +47,22 @@ angular.module('cleansingMusic', ['ionic', 'ngCordova'])
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
+    .state('app.stations', {
+      url: "/stations",
       views: {
         'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+          templateUrl: "templates/stations.html",
+          controller: 'StationsCtrl'
         }
       }
     })
 
   .state('app.single', {
-    url: "/playlists/:playlistId",
+    url: "/stations/:stationId",
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
+        templateUrl: "templates/station.html",
+        controller: 'StationCtrl'
       }
     }
   });

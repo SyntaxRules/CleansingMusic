@@ -54,7 +54,7 @@ angular.module('cleansingMusic')
 
 
 })
-    .factory('PlaylistService', function() {
+    .factory('StationService', function() {
          var playlists = [
             { title: '50\'s Bop', id: 1, streamingUrl: 'http://74.124.12.136:8000/' },
             { title: '60\'s Pop', id: 2, streamingUrl: 'http://74.124.12.136:8002/' },

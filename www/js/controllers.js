@@ -33,13 +33,13 @@ angular.module('cleansingMusic')
   };
 })
 
-.controller('PlaylistsCtrl', function($scope, PlaylistService) {
-  $scope.playlists = PlaylistService.get();
+.controller('StationsCtrl', function($scope, StationService) {
+  $scope.playlists = StationService.get();
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams, MusicService, $ionicLoading, PlaylistService) {
+.controller('StationCtrl', function($scope, $stateParams, MusicService, $ionicLoading, StationService) {
       $scope.playing = false;
-      $scope.playlist = PlaylistService.get($stateParams.playlistId);
+      $scope.playlist = StationService.get($stateParams.stationId);
       console.log($stateParams);
       console.log($scope.playlist);
       $scope.play = function(src) {
