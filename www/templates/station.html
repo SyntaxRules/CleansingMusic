@@ -16,9 +16,9 @@
 
             <!--play stop-->
             <div class="col col-50 play-btn">
-                <a class="button button-icon icon ion-play" ng-hide="isPlaying(playlist.streamingUrl)"
-                   ng-click="play(playlist.streamingUrl)"></a>
-                <a class="button button-icon icon ion-stop" ng-show="isPlaying(playlist.streamingUrl)"
+                <a class="button button-icon icon ion-play" ng-hide="isPlaying()"
+                   ng-click="play()"></a>
+                <a class="button button-icon icon ion-stop" ng-show="isPlaying()"
                    ng-click="stop()"></a>
             </div>
 

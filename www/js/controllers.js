@@ -40,10 +40,9 @@ angular.module('cleansingMusic')
     .controller('StationCtrl', function ($scope, $stateParams, MusicService, StationService) {
         $scope.playing = false;
         $scope.playlist = StationService.get($stateParams.stationId);
-        console.log($stateParams);
-        console.log($scope.playlist);
-        $scope.play = function (src) {
-            MusicService.play(src);
+
+        $scope.play = function () {
+            MusicService.play($scope.playlist);
         };
 
         $scope.stop = function () {
@@ -51,20 +50,7 @@ angular.module('cleansingMusic')
         };
 
         $scope.isPlaying = function () {
-            return MusicService.isPlaying();
+            return MusicService.isPlaying($scope.playlist);
         };
-
-
-        //var mediaStatusCallback = function (status) {
-        //    if (status == 0) {
-        //        $cordovaDialogs.alert('Failed to start the music. Please try again.');
-        //    } else if (status == 1) {
-        //        $ionicLoading.show({template: 'Loading...'});
-        //    } else if (status == 3 || status == 4) {
-        //        $cordovaLocalNotification.cancelAll();
-        //    } else {
-        //        $ionicLoading.hide();
-        //    }
-        //};
 
     });

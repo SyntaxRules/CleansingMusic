@@ -2,26 +2,30 @@ angular.module('cleansingMusic')
 
     .factory('MusicService', function ($cordovaMedia, $cordovaLocalNotification, $ionicLoading) {
         var musicIsPlaying = false;
-        var musicSrc = '';
+        var playingStation = '';
         var media;
         var service = {
             isPlaying: isPlaying,
-            getMusicSrc: getMusicSrc,
+            getPlayingStation: getPlayingStation,
             play: play,
             stop: stop,
             setVolume: setVolume
         };
         return service;
 
-        function play(src) {
+        function play(station) {
+            if (station.id != playingStation.id) {
+                stop();
+            }
 
-            media = new Media(src, null, null, mediaStatusCallback);
+
+            media = new Media(station.streamingUrl, null, null, mediaStatusCallback);
             $cordovaMedia.play(media);
             musicIsPlaying = true;
-            musicSrc = src;
+            playingStation = station;
             $cordovaLocalNotification.add({
-                id: musicSrc,
-                message: 'Playing a song',
+                id: station.id,
+                message: 'Playing the ' + station.title + ' station',
                 title: 'Cleansing Music',
                 sound: null,
                 autoCancel: false,
@@ -31,7 +35,7 @@ angular.module('cleansingMusic')
 
         function stop() {
             musicIsPlaying = false;
-            musicSrc = undefined;
+            playingStation = undefined;
             $cordovaMedia.stop(media);
             $cordovaMedia.release(media);
             $cordovaLocalNotification.cancelAll();
@@ -48,21 +52,22 @@ angular.module('cleansingMusic')
                 $ionicLoading.hide();
             }
         };
+
         //range 0.0 to 1.0
         function setVolume(vol) {
             $cordovaMedia.setVolume(media, vol);
         }
 
         //Getters
-        function isPlaying(streamingUrl) {
-            if (streamingUrl) {
-                return musicSrc == streamingUrl;
+        function isPlaying(station) {
+            if (station) {
+                return playingStation.id == station.id;
             }
             return musicIsPlaying;
         }
 
-        function getMusicSrc() {
-            return musicSrc;
+        function getPlayingStation() {
+            return playingStation;
         }
 
 
