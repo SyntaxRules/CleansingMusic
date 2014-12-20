@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.cleansingmusic951262" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.cleansingmusic.player" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>CleansingMusic</name>
   <description>
-        An Ionic Framework and Cordova project.
+    Welcome to Cleansingmusic.com. We love music. But even more, we love music you can listen to in the home or office and which your children, co-workers and others can listen to without the many offensive messages that some contain. We know there is music out there that we even enjoy, but when certain lyrics or messages are expressed, they take away from the quality that is found in the rest of the song. Hence, our music is cleansing and when we say that, it means that cleansing is spelled with two words, clean and sing. We aim to provide a clean singing option for your internet listening pleasure.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="SyntaxRulesDevelopment@gmail.com" href="http://www.cleansingmusic.com/">
+      SyntaxRules
     </author>
   <content src="index.html"/>
   <access origin="*"/>
