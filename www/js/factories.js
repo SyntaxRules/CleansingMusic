@@ -1,6 +1,6 @@
 angular.module('cleansingMusic')
 
-    .factory('MusicService', function ($cordovaMedia, $cordovaLocalNotification, $ionicLoading) {
+    .factory('MusicService', function ($cordovaMedia, $cordovaLocalNotification, $ionicLoading, $cordovaGoogleAnalytics) {
         var musicIsPlaying = false;
         var playingStation = {};
         var media;
@@ -19,6 +19,8 @@ angular.module('cleansingMusic')
                 stop();
             }
 
+            //google anaylictics
+            $cordovaGoogleAnalytics.trackEvent('Music', 'Play', station.title, 0);
 
             media = new Media(station.streamingUrl, null, null, mediaStatusCallback);
             $cordovaMedia.play(media);

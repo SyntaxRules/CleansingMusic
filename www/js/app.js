@@ -1,12 +1,8 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
 angular.module('cleansingMusic', ['ionic', 'ngCordova'])
 
-    .run(function ($ionicPlatform, MusicService, $cordovaDialogs) {
+    .run(function ($ionicPlatform, MusicService, $cordovaDialogs, $cordovaDevice, $cordovaGoogleAnalytics) {
+        //Google analytics id: UA-57872558-2
+        //get user uuid $cordovaDevice.getUUID();
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -17,6 +13,53 @@ angular.module('cleansingMusic', ['ionic', 'ngCordova'])
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+
+            //setup google analytics
+            $cordovaGoogleAnalytics.debugMode();
+            $cordovaGoogleAnalytics.startTrackerWithId('UA-57872558-2');
+            $cordovaGoogleAnalytics.setUserId('$cordovaDevice.getUUID()');
+
+            //setup the bottome add
+            var ad_units = {
+                ios : {
+                    banner: 'ca-app-pub-6869992474017983/4806197152',
+                    interstitial: 'ca-app-pub-6869992474017983/7563979554'
+                },
+                android : {
+                    banner: 'ca-app-pub-1274149562908374/2477052445',
+                    interstitial: 'ca-app-pub-6869992474017983/1657046752'
+                }
+            };
+            var admobid = ( /(android)/i.test(navigator.userAgent) ) ? ad_units.android : ad_units.ios;
+            if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
+            var defaultOptions = {
+                bannerId: admobid.banner,
+                //interstitialId: admobid.interstitial,
+                //adSize: 'SMART_BANNER',
+                //width: integer, // valid when set adSize 'CUSTOM'
+                //height: integer, // valid when set adSize 'CUSTOM'
+                position: AdMob.AD_POSITION.BOTTOM_CENTER,
+                //offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
+                bgColor: 'black', // color name, or '#RRGGBB'
+                //x: integer, // valid when set position to 0 / POS_XY
+                //y: integer, // valid when set position to 0 / POS_XY
+                isTesting: false, // set to true, to receiving test ad for testing purpose
+                //autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
+            };
+            AdMob.setOptions( defaultOptions );
+            document.addEventListener('onAdFailLoad', function(data){
+                alert('error: ' + data.error +
+                ', reason: ' + data.reason +
+                ', adNetwork:' + data.adNetwork +
+                ', adType:' + data.adType +
+                ', adEvent:' + data.adEvent); // adType: 'banner' or 'interstitial'
+            });
+            document.addEventListener('onAdLoaded', function(data){});
+            document.addEventListener('onAdPresent', function(data){});
+            document.addEventListener('onAdLeaveApp', function(data){});
+            document.addEventListener('onAdDismiss', function(data){});
+
+            AdMob.createBanner({});
         });
         $ionicPlatform.on('pause', function () {
             if (!MusicService.isPlaying()) {
