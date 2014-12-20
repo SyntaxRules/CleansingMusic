@@ -1,6 +1,6 @@
 angular.module('cleansingMusic')
 
-    .factory('MusicService', function ($cordovaMedia, $cordovaLocalNotification, $ionicLoading, $cordovaGoogleAnalytics) {
+    .factory('MusicService', function ($cordovaMedia, $cordovaLocalNotification, $ionicLoading, $cordovaGoogleAnalytics, $q) {
         var musicIsPlaying = false;
         var playingStation = {};
         var media;
@@ -9,7 +9,8 @@ angular.module('cleansingMusic')
             getPlayingStation: getPlayingStation,
             play: play,
             stop: stop,
-            setVolume: setVolume
+            setVolume: setVolume,
+            assertNotificationIsWorking: assertNotificationIsWorking
         };
         return service;
 
@@ -38,10 +39,10 @@ angular.module('cleansingMusic')
 
         function stop() {
             musicIsPlaying = false;
-            playingStation = undefined;
             $cordovaMedia.stop(media);
             $cordovaMedia.release(media);
-            $cordovaLocalNotification.cancelAll();
+            $cordovaLocalNotification.cancel(playingStation.id);
+            playingStation = undefined;
         }
 
         function mediaStatusCallback (status) {
@@ -52,12 +53,30 @@ angular.module('cleansingMusic')
                 $ionicLoading.show({template: 'Loading...'});
             } else if (status == 3 || status == 4) {
                 $ionicLoading.hide();
-                $cordovaLocalNotification.cancelAll();
+                $cordovaLocalNotification.cancel(playingStation.id);
             } else {
                 $ionicLoading.hide();
             }
         };
 
+        function assertNotificationIsWorking() {
+
+            if (!musicIsPlaying) $cordovaLocalNotification.cancel(playingStation.id);;
+
+            $cordovaLocalNotification.isTriggered(playingStation.id).then(function(isTriggered) {
+                if (isTriggered != true) {
+                    //put one out!
+                    $cordovaLocalNotification.add({
+                        id: station.id,
+                        message: 'Playing the ' + station.title + ' station',
+                        title: 'Cleansing Music',
+                        sound: null,
+                        autoCancel: false,
+                        ongoing: true
+                    });
+                }
+            })
+        }
         //range 0.0 to 1.0
         function setVolume(vol) {
             $cordovaMedia.setVolume(media, vol);

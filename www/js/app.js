@@ -17,17 +17,17 @@ angular.module('cleansingMusic', ['ionic', 'ngCordova'])
             //setup google analytics
             $cordovaGoogleAnalytics.debugMode();
             $cordovaGoogleAnalytics.startTrackerWithId('UA-57872558-2');
-            $cordovaGoogleAnalytics.setUserId('$cordovaDevice.getUUID()');
+            $cordovaGoogleAnalytics.setUserId($cordovaDevice.getUUID());
 
             //setup the bottome add
             var ad_units = {
                 ios : {
-                    banner: 'ca-app-pub-6869992474017983/4806197152',
-                    interstitial: 'ca-app-pub-6869992474017983/7563979554'
+                    banner: '',
+                    interstitial: ''
                 },
                 android : {
                     banner: 'ca-app-pub-1274149562908374/2477052445',
-                    interstitial: 'ca-app-pub-6869992474017983/1657046752'
+                    interstitial: ''
                 }
             };
             var admobid = ( /(android)/i.test(navigator.userAgent) ) ? ad_units.android : ad_units.ios;
@@ -62,14 +62,19 @@ angular.module('cleansingMusic', ['ionic', 'ngCordova'])
             AdMob.createBanner({});
         });
         $ionicPlatform.on('pause', function () {
+            MusicService.assertNotificationIsWorking();
             if (!MusicService.isPlaying()) {
                 MusicService.stop();
             }
         });
         $ionicPlatform.on('resume', function () {
+            MusicService.assertNotificationIsWorking();
             if (!MusicService.isPlaying()) {
                 MusicService.stop();
             }
+        });
+        $ionicPlatform.on('startcallbutton', function () {
+            MusicService.stop();
         });
         $ionicPlatform.on('offline', function () {
             MusicService.stop();
