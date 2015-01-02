@@ -1,0 +1,22 @@
+{
+    "version": "1.0.5",
+    "name": "com.rjfun.cordova.extension",
+    "cordova_name": "Cordova Plugin Extension",
+    "description": "Common interface and reusable code, as dependency of other plugins",
+    "license": "MIT",
+    "repo": "https://github.com/floatinghotpot/cordova-extension.git",
+    "issue": "https://github.com/floatinghotpot/cordova-extension/issues",
+    "keywords": [
+        "rjfun"
+    ],
+    "platforms": [
+        "android",
+        "ios"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0"
+        }
+    ]
+}

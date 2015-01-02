@@ -1,0 +1,10 @@
+<ion-view view-title="Stations">
+    <ion-content class="allow-for-subfooter">
+        <ion-list>
+            <ion-item ng-repeat="station in stations" href="#/app/stations/{{station.id}}">
+                {{station.title}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <footer-bar></footer-bar>
+</ion-view>

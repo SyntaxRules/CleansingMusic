@@ -2,8 +2,8 @@
 # http://git-scm.com/docs/gitignore
 
 node_modules/
-platforms/
-plugins/
+# platforms/
+# plugins/ 
 
 .idea/
 npm-debug.log

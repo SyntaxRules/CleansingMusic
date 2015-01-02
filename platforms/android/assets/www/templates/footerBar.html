@@ -1,0 +1,21 @@
+<ion-footer-bar ng-show="isPlaying()">
+    <div class="bar bar-footer bar-balanced">
+        <!--dislike-->
+        <div class="col-25 dislike-btn">
+            <a class="button button-icon icon ion-heart-broken"></a>
+        </div>
+
+        <!--play stop-->
+        <div class="col-50 play-btn">
+            <a class="button button-icon icon ion-stop" ng-click="stop()"></a>
+        </div>
+
+        <!--like-->
+        <div class="col-25 like-btn">
+            <a class="button button-icon icon ion-heart"></a>
+        </div>
+    </div>
+    <div class="bar bar-subfooter bar-balanced">
+        <h2 class="title">The {{getStationTitle()}} Station</h2>
+    </div>
+</ion-footer-bar>

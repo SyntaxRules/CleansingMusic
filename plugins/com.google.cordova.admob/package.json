@@ -1,0 +1,27 @@
+{
+    "version": "2.6.2",
+    "name": "com.google.cordova.admob",
+    "cordova_name": "AdMob PluginPro with Mediations",
+    "description": "Powerful Ad Plugin for Cordova/PhoneGap. Show Ad with single line of JavaScript. Latest SDK.",
+    "license": "MIT",
+    "repo": "https://github.com/floatinghotpot/cordova-admob-pro.git",
+    "issue": "https://github.com/floatinghotpot/cordova-admob-pro/issues",
+    "keywords": [
+        "rjfun",
+        "admob",
+        "google",
+        "ad"
+    ],
+    "platforms": [
+        "android",
+        "ios",
+        "wp8",
+        "windows"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0"
+        }
+    ]
+}
