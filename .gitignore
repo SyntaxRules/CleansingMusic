@@ -8,3 +8,5 @@ plugins/
 .idea/
 npm-debug.log
 *~
+# ignore any apk files. We don't want to publish them to gihub
+*.apk
